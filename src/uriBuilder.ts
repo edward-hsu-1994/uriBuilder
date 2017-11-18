@@ -69,4 +69,30 @@ export class UriBuilder implements IUriModel {
 
     return result;
   }
+
+  public toString(): string {
+    let result = `${this.schema}://${this.host}`;
+    if (!UriSchemaPortList.isDefaultPort(this.schema, this.port)) {
+      result += ':' + this.port;
+    }
+
+    result += '/';
+
+    if (this.pathSegments && this.pathSegments.length) {
+      result += this.pathSegments.join('/');
+    }
+
+    if (this.query) {
+      const queryTemp = new UriQueryBuilder(this.query).toString();
+      if (queryTemp.length) {
+        result += '?' + queryTemp;
+      }
+    }
+
+    if (this.hash && this.hash.length) {
+      result += '#' + this.hash;
+    }
+
+    return result;
+  }
 }
