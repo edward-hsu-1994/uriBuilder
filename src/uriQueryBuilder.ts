@@ -9,7 +9,9 @@ export interface IUriQueryModel {
 export class UriQueryBuilder {
   public model: IUriQueryModel = {};
 
-  private constructor() {}
+  constructor(model?: IUriQueryModel) {
+    this.model = model;
+  }
 
   public static parse(query: string): UriQueryBuilder {
     const result = new UriQueryBuilder();
