@@ -1,4 +1,3 @@
-export * from './uri';
 export * from './uriBuilder';
-export * from './uriQueryModel';
+export * from './uriQueryBuilder';
 export * from './uriSchemaPortList';
