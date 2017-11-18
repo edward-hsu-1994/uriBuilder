@@ -1,0 +1,24 @@
+{
+  "name": "uri-builder",
+  "version": "1.0.0",
+  "description": "URI builder and parser",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "tsc && node dist/test.js"
+  },
+  "keywords": [
+    "URI",
+    "URL"
+  ],
+  "homepage": "https://github.com/XuPeiYao/uriBuilder",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XuPeiYao/uriBuilder.git"
+  },
+  "author": "XuPeiYao",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "~2.4.2"
+  }
+}
