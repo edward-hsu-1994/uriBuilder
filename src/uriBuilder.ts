@@ -67,6 +67,19 @@ export class UriBuilder implements IUriModel {
     result.schema = result.schema.substring(0, result.schema.length - 1);
 
     result.host = uri.match(uriRegExp_hostPort)[0].substring(2);
+
+    if (result.host.indexOf('@') > -1) {
+      // has authority
+      let authorityTemp = result.host.split('@', 2);
+      result.host = authorityTemp[1];
+
+      authorityTemp = authorityTemp[0].split(':');
+      result.authority = {
+        user: authorityTemp[0],
+        password: authorityTemp[1]
+      };
+    }
+
     const hostPortTemp = result.host.split(':', 2);
     result.host = hostPortTemp[0];
     result.port = +hostPortTemp[1];
