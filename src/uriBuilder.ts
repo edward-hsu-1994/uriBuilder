@@ -7,7 +7,7 @@ const uriRegExp_schema = /^(([^:/?#]+):)/;
 const uriRegExp_hostPort = /\/\/[^/?#]+/;
 const uriRegExp_pathSegments = /(\/[^/?#]*)+/;
 const uriRegExp_query = /\?[^#]*/;
-const uriRegExp_hash = /#(.*)/;
+const uriRegExp_fragment = /#(.*)/;
 // #endregion
 
 export interface IUriModel {
@@ -16,7 +16,7 @@ export interface IUriModel {
   port: number;
   pathSegments: string[];
   query: IUriQueryModel;
-  hash: string;
+  fragment: string;
 }
 
 export class UriBuilder implements IUriModel {
@@ -36,7 +36,7 @@ export class UriBuilder implements IUriModel {
   public pathSegments: string[];
 
   public query: IUriQueryModel;
-  public hash: string;
+  public fragment: string;
 
   public static isUriFormat(str: string): boolean {
     return uriRegExp.test(str);
@@ -82,9 +82,9 @@ export class UriBuilder implements IUriModel {
       result.query = UriQueryBuilder.parse(queryTemp[0]).model;
     }
 
-    const hashTemp = uri.match(uriRegExp_hash);
+    const hashTemp = uri.match(uriRegExp_fragment);
     if (hashTemp) {
-      result.hash = hashTemp[0].substring(1);
+      result.fragment = hashTemp[0].substring(1);
     }
 
     return result;
@@ -109,8 +109,8 @@ export class UriBuilder implements IUriModel {
       }
     }
 
-    if (this.hash && this.hash.length) {
-      result += '#' + this.hash;
+    if (this.fragment && this.fragment.length) {
+      result += '#' + this.fragment;
     }
 
     return result;

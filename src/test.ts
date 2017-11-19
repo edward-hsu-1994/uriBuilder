@@ -103,7 +103,7 @@ var uriDataSet = [
       port: 8080,
       pathSegments: ['a', 'b', 'c', 'd'],
       query: { key: 2 },
-      hash: 'hash'
+      fragment: 'hash'
     }
   ],
   [
@@ -113,7 +113,7 @@ var uriDataSet = [
       host: 'example.com',
       port: 80,
       pathSegments: ['a', ''],
-      hash: 'b/c/d?key=2'
+      fragment: 'b/c/d?key=2'
     }
   ]
 ];
