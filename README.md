@@ -1,6 +1,6 @@
 # uriBuilder
-[![npm version](https://badge.fury.io/js/uriBuilder.svg)](https://badge.fury.io/js/uriBuilder)
-[![Build Status](https://travis-ci.org/XuPeiYao/uriBuilder.svg?branch=master)](https://travis-ci.org/XuPeiYao/ngRestClient) [![Downloads](https://img.shields.io/npm/dm/uriBuilder.svg)](https://www.npmjs.com/package/uriBuilder) [![license](https://img.shields.io/github/license/xupeiyao/uribuilder.svg)](https://github.com/XuPeiYao/uriBuilder/blob/master/LICENSE)
+[![npm version](https://badge.fury.io/js/uribuilder.svg)](https://badge.fury.io/js/uribuilder)
+[![Build Status](https://travis-ci.org/XuPeiYao/uriBuilder.svg?branch=master)](https://travis-ci.org/XuPeiYao/uriBuilder) [![Downloads](https://img.shields.io/npm/dm/uriBuilder.svg)](https://www.npmjs.com/package/uriBuilder) [![license](https://img.shields.io/github/license/xupeiyao/uribuilder.svg)](https://github.com/XuPeiYao/uriBuilder/blob/master/LICENSE)
 
 URI parser and builder
 
