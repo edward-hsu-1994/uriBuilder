@@ -1,5 +1,6 @@
 import { IUriQueryModel, UriQueryBuilder } from './uriQueryBuilder';
 import { UriSchemaPortList } from './uriSchemaPortList';
+import { IUriAuthority } from './uriAuthority';
 
 // #region Uri Format Regex
 const uriRegExp = /^(([^:/?#]+):)\/\/([^/?#]+)(\?([^#]*))?(#(.*))?/;
@@ -12,6 +13,7 @@ const uriRegExp_fragment = /#(.*)/;
 
 export interface IUriModel {
   schema: string;
+  authority?: IUriAuthority;
   host: string;
   port: number;
   pathSegments: string[];
@@ -21,6 +23,7 @@ export interface IUriModel {
 
 export class UriBuilder implements IUriModel {
   public schema: string;
+  public authority: IUriAuthority;
   public host: string;
 
   // #region Port
@@ -91,7 +94,16 @@ export class UriBuilder implements IUriModel {
   }
 
   public toString(): string {
-    let result = `${this.schema}://${this.host}`;
+    let result = `${this.schema}://`;
+    if (this.authority && this.authority.user) {
+      result += this.authority.user;
+      if (this.authority.password) {
+        result += ':' + this.authority.password;
+      }
+      result += '@';
+    }
+    result += this.host;
+
     if (!UriSchemaPortList.isDefaultPort(this.schema, this.port)) {
       result += ':' + this.port;
     }
