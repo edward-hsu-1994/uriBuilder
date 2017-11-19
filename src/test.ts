@@ -70,6 +70,27 @@ var uriDataSet = [
       pathSegments: ['a', 'b', 'c', 'd'],
       query: { key: 2 }
     }
+  ],
+  [
+    'https://example.com:8080/a/b/c/d?key=2#hash',
+    {
+      schema: 'https',
+      host: 'example.com',
+      port: 8080,
+      pathSegments: ['a', 'b', 'c', 'd'],
+      query: { key: 2 },
+      hash: 'hash'
+    }
+  ],
+  [
+    'https://example.com/a/#b/c/d?key=2',
+    {
+      schema: 'https',
+      host: 'example.com',
+      port: 80,
+      pathSegments: ['a', ''],
+      hash: 'b/c/d?key=2'
+    }
   ]
 ];
 for (let data of uriDataSet) {

@@ -64,13 +64,16 @@ export class UriBuilder implements IUriModel {
       .slice(1);
 
     const queryTemp = uri.match(uriRegExp_query);
-    if (queryTemp) {
+    if (
+      queryTemp &&
+      uri.substring(0, queryTemp.index + 1).indexOf('#') === -1
+    ) {
       result.query = UriQueryBuilder.parse(queryTemp[0]).model;
     }
 
     const hashTemp = uri.match(uriRegExp_hash);
     if (hashTemp) {
-      result.hash = hashTemp[0];
+      result.hash = hashTemp[0].substring(1);
     }
 
     return result;
