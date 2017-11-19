@@ -1,4 +1,4 @@
-import { UriQueryBuilder } from './index';
+import { UriQueryBuilder, IUriQueryModel } from './index';
 import { is } from './instanceOf';
 import { UriBuilder } from './uriBuilder';
 
@@ -45,6 +45,30 @@ for (let data of queryDataSet) {
   const queryModel = UriQueryBuilder.parse(<string>data[0]);
   console.assert(deepEq(queryModel.model, data[1]));
   console.assert(deepEq(queryModel.toString(), data[0]));
+}
+
+hr();
+
+console.info('URI Query Update Test');
+var queryUpdateDataSet = [
+  [
+    'https://www.youtube.com/watch?v=TlzfSfc_ymI',
+    { v: 'test' },
+    'https://www.youtube.com/watch?v=test'
+  ],
+  [
+    'https://www.youtube.com/watch?v=TlzfymI',
+    { v: 'test', a: [1, 2, 3, 4] },
+    'https://www.youtube.com/watch?v=test&a=1&a=2&a=3&a=4'
+  ]
+];
+for (let data of queryUpdateDataSet) {
+  console.log(data[0]);
+  const queryUpdated = UriBuilder.updateQuery(
+    data[0] as string,
+    data[1] as IUriQueryModel
+  );
+  console.assert(deepEq(queryUpdated, data[2]));
 }
 
 hr();
