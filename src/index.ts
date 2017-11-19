@@ -1,5 +1,4 @@
 export * from './instanceOf';
-export * from './test';
 export * from './uriAuthority';
 export * from './uriBuilder';
 export * from './uriQueryBuilder';

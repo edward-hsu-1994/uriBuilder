@@ -20,7 +20,11 @@ gulp.task('create-index', function(done) {
       if (stats.isDirectory()) {
         createIndex(path + '/' + file);
       } else {
-        if (!/\.ts$/g.test(name) || /\.spec\.ts$/g.test(name)) {
+        if (
+          !/\.ts$/gi.test(name) ||
+          /\.spec\.ts$/gi.test(name) ||
+          /test.ts$/gi.test(name)
+        ) {
           return;
         }
         name = name.replace(/\.ts$/g, '');
