@@ -73,6 +73,28 @@ for (let data of queryUpdateDataSet) {
 
 hr();
 
+console.info('URI Set Path Test');
+var setPathDataSet = [
+  [
+    'https://www.youtube.com/watch?v=TlzfSfc_ymI',
+    'test/a/b/c/',
+    'https://www.youtube.com/test/a/b/c/?v=TlzfSfc_ymI'
+  ],
+  [
+    'https://www.youtube.com/watch?v=TlzfymI',
+    '/test',
+    'https://www.youtube.com/test?v=TlzfymI'
+  ]
+];
+for (let data of setPathDataSet) {
+  console.log(data[0]);
+  const builder = UriBuilder.parse(data[0]);
+  builder.setPath(data[1]);
+  console.assert(deepEq(builder.toString(), data[2]));
+}
+
+hr();
+
 console.info('URI Parse Test');
 var uriDataSet = [
   [

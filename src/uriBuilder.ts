@@ -106,6 +106,11 @@ export class UriBuilder implements IUriModel {
     return result;
   }
 
+  public setPath(path: string): void {
+    if (path.indexOf('/') === 0) path = path.substring(1);
+    this.pathSegments = path.split('/');
+  }
+
   public toString(): string {
     let result = `${this.schema}://`;
     if (this.authority && this.authority.user) {
