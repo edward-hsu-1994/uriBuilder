@@ -57,6 +57,12 @@ export class UriBuilder implements IUriModel {
     result.host = hostPortTemp[0];
     result.port = +hostPortTemp[1];
 
+    result.pathSegments = uri
+      .match(uriRegExp_pathSegments)[0]
+      .substring(2)
+      .split('/')
+      .slice(1);
+
     const queryTemp = uri.match(uriRegExp_query);
     if (queryTemp) {
       result.query = UriQueryBuilder.parse(queryTemp[0]).model;
