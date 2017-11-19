@@ -137,6 +137,27 @@ var uriDataSet = [
       pathSegments: ['a', ''],
       fragment: 'b/c/d?key=2'
     }
+  ],
+  [
+    'https://test@example.com/a/#b/c/d?key=2',
+    {
+      schema: 'https',
+      authority: { user: 'test' },
+      host: 'example.com',
+      port: 80,
+      pathSegments: ['a', ''],
+      fragment: 'b/c/d?key=2'
+    }
+  ],
+  [
+    'https://test:1234@example.com/',
+    {
+      schema: 'https',
+      authority: { user: 'test', password: '1234' },
+      host: 'example.com',
+      port: 80,
+      pathSegments: ['']
+    }
   ]
 ];
 for (let data of uriDataSet) {
