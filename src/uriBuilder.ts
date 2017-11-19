@@ -23,7 +23,12 @@ export interface IUriModel {
 
 export class UriBuilder implements IUriModel {
   public schema: string;
-  public authority: IUriAuthority;
+
+  private _authority: IUriAuthority;
+  public get authority(): IUriAuthority {
+    return this._authority;
+  }
+
   public host: string;
 
   // #region Port
@@ -38,7 +43,7 @@ export class UriBuilder implements IUriModel {
 
   public pathSegments: string[];
 
-  public query: IUriQueryModel;
+  public query: IUriQueryModel = {};
   public fragment: string;
 
   public static isUriFormat(str: string): boolean {
@@ -74,7 +79,7 @@ export class UriBuilder implements IUriModel {
       result.host = authorityTemp[1];
 
       authorityTemp = authorityTemp[0].split(':');
-      result.authority = {
+      result._authority = {
         user: authorityTemp[0],
         password: authorityTemp[1]
       };
@@ -109,6 +114,16 @@ export class UriBuilder implements IUriModel {
   public setPath(path: string): void {
     if (path.indexOf('/') === 0) path = path.substring(1);
     this.pathSegments = path.split('/');
+  }
+
+  public setAuthority(user: string, password?: string): void {
+    if (!this._authority) {
+      this._authority = {
+        user: undefined
+      };
+    }
+    this._authority.user = user;
+    this._authority.password = password;
   }
 
   public toString(): string {

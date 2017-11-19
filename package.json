@@ -1,6 +1,6 @@
 {
   "name": "uribuilder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "URI builder and parser",
   "main": "index.js",
   "scripts": {

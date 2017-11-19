@@ -98,13 +98,22 @@ hr();
 console.info('URI Parse Test');
 var uriDataSet = [
   [
-    'https://www.youtube.com/watch?v=TlzfSfc_ymI',
+    'https://www.youtube.com/watch',
+    {
+      schema: 'https',
+      host: 'www.youtube.com',
+      port: 80,
+      pathSegments: ['watch']
+    }
+  ],
+  [
+    'https://www.youtube.com/watch?v=TlzfSfc_ymI&%E4%B8%AD%E6%96%87=%E4%B8%AD%E6%96%87',
     {
       schema: 'https',
       host: 'www.youtube.com',
       port: 80,
       pathSegments: ['watch'],
-      query: { v: 'TlzfSfc_ymI' }
+      query: { v: 'TlzfSfc_ymI', 中文: '中文' }
     }
   ],
   [
@@ -166,3 +175,18 @@ for (let data of uriDataSet) {
   console.assert(deepEq(uriModel, data[1]));
   console.assert(deepEq(uriModel.toString(), data[0]));
 }
+
+hr();
+
+console.info('Empty URI Builder Test');
+const emptyBuilder = new UriBuilder();
+emptyBuilder.schema = 'http';
+emptyBuilder.host = 'example';
+emptyBuilder.setPath('/home/index');
+emptyBuilder.fragment = 'top';
+emptyBuilder.setAuthority('guest');
+emptyBuilder.query.action = 'back';
+
+console.assert(
+  emptyBuilder.toString() === 'http://guest@example/home/index?action=back#top'
+);

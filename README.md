@@ -11,19 +11,45 @@ npm install uribuilder
 
 ## Getting Started
 ```typescript
+// import module
 import { UriBuilder } from 'uribuilder';
 
 const testURI = 'https://www.google.com/search?q=wiki';
-const builder: UriBuilder = UriBuilder.parse(testURI);
+
+// Create Builder from current URI
+const builder = UriBuilder.parse(testURI);
+
+// Set Query Param
 builder.query.q = 'newKeyword';
-console.log(builder.toString()); //result: 'https://www.google.com/search?q=newKeyword'
 
+// Log builder result, result: 'https://www.google.com/search?q=newKeyword'
+console.log(builder.toString());
+
+// Set Fragment
 builder.fragment = 'hash';
-console.log(builder.toString()); //result: 'https://www.google.com/search?q=newKeyword#hash'
 
+// Log builder result, result: 'https://www.google.com/search?q=newKeyword#hash'
+console.log(builder.toString());
+
+// Update input URI Query
 const updatedURI = UriBuilder.updateQuery(testURI, {
   q: 'test',
-  hw: ['a', 'b']
+  hw: ['a', 'b'] //Query Param: Array
 });
-console.log(updatedURI); //result: 'https://www.google.com/search?q=test&hw=a&hw=b'
+
+// Log updated URI, result: 'https://www.google.com/search?q=test&hw=a&hw=b'
+console.log(updatedURI);
+
+// Create UriBuilder
+const emptyBuilder = new UriBuilder();
+emptyBuilder.schema = 'http';
+emptyBuilder.host = 'example';
+emptyBuilder.setPath('/home/index');
+emptyBuilder.fragment = 'top';
+emptyBuilder.setAuthority('guest');
+emptyBuilder.query.action = 'back';
+emptyBuilder.query.chinese = '中文';
+
+// Log builder result, result: http://guest@example/home/index?action=back&chinese=%E4%B8%AD%E6%96%87#top
+console.log(emptyBuilder.toString());
 ```
