@@ -1,6 +1,6 @@
 import { is } from './instanceOf';
 
-type BaseType = boolean | number | string;
+export type BaseType = boolean | number | string;
 
 export interface IUriQueryModel {
   [key: string]: BaseType | Array<BaseType>;
