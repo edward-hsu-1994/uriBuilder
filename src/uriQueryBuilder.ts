@@ -7,10 +7,10 @@ export interface IUriQueryModel {
 }
 
 export class UriQueryBuilder {
-  public model: IUriQueryModel = {};
+  public model: IUriQueryModel;
 
   constructor(model?: IUriQueryModel) {
-    this.model = model;
+    this.model = model || {};
   }
 
   public static parse(query: string): UriQueryBuilder {
@@ -26,12 +26,21 @@ export class UriQueryBuilder {
     for (const keyValue of query.split('&')) {
       const pair = keyValue.split('=', 2).map(x => decodeURIComponent(x));
 
+      let value: BaseType = +pair[1];
+      if (isNaN(value)) {
+        value = pair[1];
+      }
+
       if (result.model.hasOwnProperty(pair[0])) {
         // is array
-        result.model[pair[0]] = <Array<BaseType>>[result.model[pair[0]]];
-        (<Array<BaseType>>result.model[pair[0]]).push(pair[1]);
+        if (is(result.model[pair[0]], Array)) {
+          (<Array<BaseType>>result.model[pair[0]]).push(value);
+        } else {
+          result.model[pair[0]] = <Array<BaseType>>[result.model[pair[0]]];
+          (<Array<BaseType>>result.model[pair[0]]).push(value);
+        }
       } else {
-        result.model[pair[0]] = pair[1];
+        result.model[pair[0]] = value;
       }
     }
 
