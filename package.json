@@ -2,9 +2,10 @@
   "name": "uribuilder",
   "version": "1.0.0",
   "description": "URI builder and parser",
-  "main": "./dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "tsc && node dist/test.js"
+    "build": "gulp build",
+    "test": "npm run build && node dist/test.js"
   },
   "keywords": ["URI", "URL"],
   "homepage": "https://github.com/XuPeiYao/uriBuilder",
@@ -16,6 +17,11 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-copy": "^1.0.1",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-typescript": "^3.2.3",
     "typescript": "~2.4.2"
   }
 }
