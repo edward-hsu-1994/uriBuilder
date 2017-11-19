@@ -42,6 +42,17 @@ export class UriBuilder implements IUriModel {
     return uriRegExp.test(str);
   }
 
+  public static updateQuery(uri: string, model: IUriQueryModel): string {
+    const builder = UriBuilder.parse(uri);
+    for (const key in model) {
+      if (!model.hasOwnProperty(key)) {
+        continue;
+      }
+      builder.query[key] = model[key];
+    }
+    return builder.toString();
+  }
+
   public static parse(uri: string): UriBuilder {
     if (!this.isUriFormat(uri)) {
       throw new Error('URI Format ERROR');
