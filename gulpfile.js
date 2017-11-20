@@ -3,7 +3,6 @@ var gulp = require('gulp'),
   gulp_typescript = require('gulp-typescript'),
   gulp_sourceMaps = require('gulp-sourcemaps'),
   gulp_clean = require('gulp-clean'),
-  gulp_copy = require('gulp-copy'),
   fs = require('fs');
 
 gulp.task('clean', function() {
