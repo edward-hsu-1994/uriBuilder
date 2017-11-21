@@ -31,6 +31,12 @@ builder.fragment = 'hash';
 // Log builder result, result: 'https://www.google.com/search?q=newKeyword#hash'
 console.log(builder.toString());
 
+// Delete Query Param
+delete builder.query.q;
+
+// Log builder result, result: 'https://www.google.com/search#hash'
+console.log(builder.toString());
+
 // Update input URI Query
 const updatedURI = UriBuilder.updateQuery(testURI, {
   q: 'test',

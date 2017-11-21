@@ -190,3 +190,13 @@ emptyBuilder.query.action = 'back';
 console.assert(
   emptyBuilder.toString() === 'http://guest@example/home/index?action=back#top'
 );
+emptyBuilder.toString();
+
+hr();
+console.info('Delete Query Param Test');
+
+delete emptyBuilder.query.action;
+console.assert(
+  emptyBuilder.toString() === 'http://guest@example/home/index#top'
+);
+console.log(emptyBuilder.toString());
