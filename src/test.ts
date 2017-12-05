@@ -107,6 +107,15 @@ var uriDataSet = [
     }
   ],
   [
+    './a/b/c/watch',
+    {
+      schema: UriBuilder.relative,
+      host: '.',
+      port: undefined,
+      pathSegments: ['a', 'b', 'c', 'watch']
+    }
+  ],
+  [
     'https://www.youtube.com/watch?v=TlzfSfc_ymI&%E4%B8%AD%E6%96%87=%E4%B8%AD%E6%96%87',
     {
       schema: 'https',
@@ -200,3 +209,10 @@ console.assert(
   emptyBuilder.toString() === 'http://guest@example/home/index#top'
 );
 console.log(emptyBuilder.toString());
+
+hr();
+console.info('Relative Test');
+const relativeBuilder = UriBuilder.parse('./home/exam?id=0');
+relativeBuilder.query.id = 1;
+console.assert(relativeBuilder.toString() === './home/exam?id=1');
+console.log(relativeBuilder.toString());
