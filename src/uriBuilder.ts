@@ -22,6 +22,7 @@ export interface IUriModel {
 }
 
 export class UriBuilder implements IUriModel {
+  public static relative = 'relative';
   public schema: string;
 
   private _authority: IUriAuthority;
@@ -63,7 +64,10 @@ export class UriBuilder implements IUriModel {
 
   public static parse(uri: string): UriBuilder {
     if (!this.isUriFormat(uri)) {
-      throw new Error('URI Format ERROR');
+      uri = `${UriBuilder.relative}://${uri}`;
+      if (!this.isUriFormat(uri)) {
+        throw new Error('URI Format ERROR');
+      }
     }
 
     const result = new UriBuilder();
@@ -126,8 +130,17 @@ export class UriBuilder implements IUriModel {
     this._authority.password = password;
   }
 
+  public isRelative(): boolean {
+    return this.schema === UriBuilder.relative;
+  }
+
   public toString(): string {
     let result = `${this.schema}://`;
+
+    if (this.schema === UriBuilder.relative) {
+      result = '';
+    }
+
     if (this.authority && this.authority.user) {
       result += this.authority.user;
       if (this.authority.password) {

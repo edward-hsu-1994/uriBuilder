@@ -1,6 +1,7 @@
 export class UriSchemaPortList {
   static http = 80;
   static https = 80;
+  static relative = undefined;
 
   public static getPort(schema: string): number {
     return this[schema.toLowerCase()];
