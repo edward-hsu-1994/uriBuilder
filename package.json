@@ -7,7 +7,7 @@
     "build": "gulp build",
     "test": "npm run build && node dist/test.js"
   },
-  "keywords": ["URI", "URL"],
+  "keywords": ["URI", "URL", "typescript"],
   "homepage": "https://github.com/XuPeiYao/uriBuilder",
   "repository": {
     "type": "git",
